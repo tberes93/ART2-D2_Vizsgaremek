@@ -6,56 +6,40 @@ plugins {
 
 group = 'com.sbpsystems'
 version = '0.0.1-SNAPSHOT'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
+sourceCompatibility = '1.17'
+sourceCompatibility = '1.17'
 
 repositories {
     mavenCentral()
-//    maven { url 'https://repository.sbp2.intra/nexus/content/repositories/public/' }
-    maven { url 'http://repository.sbp2.intra/repository/maven-public/'
-        allowInsecureProtocol = true  // Explicit engedélyezés
-    }
-
 }
 
 dependencies {
-    //A spring security és JWT authentication függőségei:
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5' // JWT könyvtár
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.security:spring-security-web'
-    implementation 'org.springframework.security:spring-security-config'
 
+    implementation("org.mapstruct:mapstruct:1.6.3")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation 'org.postgresql:postgresql:42.7.4'
 
+    // https://mvnrepository.com/artifact/org.liquibase/liquibase-core
+    implementation 'org.liquibase:liquibase-core:4.30.0'
 
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
     testImplementation 'org.springframework.security:spring-security-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testImplementation 'com.h2database:h2:2.2.224'
-    runtimeOnly 'com.h2database:h2:2.1.214'
-
-    //Swagger-ui-hoz kellő függőség
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
-    implementation 'io.swagger.core.v3:swagger-annotations:2.2.11'
-
-    //JAX-RS-re annotált interface-k felismeréséhez
-    // implementation 'org.springframework.boot:spring-boot-starter-jersey'
-
-    implementation 'com.sbpsystems.art2d2:art2d2-vizsgaremek-api:1.0.1'
 }
 
-tasks.named('test') {
+/*
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
+*/
+tasks.test {
     useJUnitPlatform()
 }

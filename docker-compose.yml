@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  vizsgaremek-database:
+    image: bitnami/postgresql:16.1.0-debian-11-r15
+    container_name: vizsgaremek-database
+    ports:
+      - "5442:5432"
+    environment:
+      POSTGRES_DB: vizsgaremek
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8"
+    volumes:
+      - vizsgaremek-database:/var/lib/postgresql/data
+
+volumes:
+  vizsgaremek-database:

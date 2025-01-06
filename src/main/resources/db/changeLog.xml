@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="init_tables" author="eviktor">
+        <sqlFile path="ddl/01_create_tables.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="dml/02_init_inserts.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="03_insert_exercises" author="eviktor">
+        <sqlFile path="dml/03_insert_exercises.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="04_update_read_exercises" author="eviktor">
+        <sqlFile path="dml/04_update_read_exercises.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="05_insert_rewards" author="eviktor">
+        <sqlFile path="dml/05_insert_rewards.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+</databaseChangeLog>
