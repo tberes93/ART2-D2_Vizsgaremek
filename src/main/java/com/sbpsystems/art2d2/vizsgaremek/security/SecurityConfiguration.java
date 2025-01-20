@@ -26,71 +26,11 @@ public class SecurityConfiguration {
 		http.authorizeRequests()
 			.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 			.requestMatchers("/art2d2/api/**").permitAll()
-			//.antMatchers("/public/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.httpBasic(Customizer.withDefaults());
 		return http.build();
 	}
-
-
-/*
-	@Override
-	public void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable()
-			.authorizeRequests().anyRequest().authenticated()
-			.and().httpBasic();
-	}*/
-
-
-	/*
-		http.csrf().
-			disable()
-			.authorizeRequests()
-			.antMatchers(HttpMethod.OPTIONS, "/**")
-			.permitAll()
-			.anyRequest()
-			.authenticated()
-			.and()
-			.httpBasic();*/
-/*
-		http.httpBasic(Customizer.withDefaults());
-		http
-			.csrf(AbstractHttpConfigurer::disable)
-			.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
-		return http.build();
-*/
-	/*
-		http
-			.authorizeRequests().antMatchers("/api/**").hasAnyRole("OFFER_CREATER", "AGR_LEADER", "ADMIN", "SALESPERSON", "APPROVER").anyRequest().authenticated();
-	*/
-		/*
-		http.csrf(AbstractHttpConfigurer::disable)
-			.cors(AbstractHttpConfigurer::disable)
-			.authorizeHttpRequests((authorize) ->
-				//authorize.anyRequest().authenticated()
-				authorize
-					.requestMatchers("/art2d2/api/auth/**").permitAll()
-					//.requestMatchers(HttpMethod.GET, "/art2d2/api/**").permitAll()
-					//.requestMatchers("/art2d2/api/auth/**").permitAll()
-					.anyRequest().authenticated()
-
-			);
-		return http.build();
-*/
-	/*
-		http
-			.csrf(AbstractHttpConfigurer::disable)
-			.authorizeRequests()
-			.antMatchers("/login/**").permitAll()
-			.anyRequest().authenticated()
-			.and()
-			.httpBasic(Customizer.withDefaults())
-			.formLogin(Customizer.withDefaults());
-
-		return http.build();*/
-
-
 
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
