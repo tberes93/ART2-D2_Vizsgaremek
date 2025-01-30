@@ -25,16 +25,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("User not found");
 		}
 
-		//if you don't use authority based security, just add empty set
 		Set<GrantedAuthority> authorities = new HashSet<>();
 		AppUserDetails userDetails = new AppUserDetails(userName, user.getPassword(), authorities);
 		userDetails.setFirstName(user.getFirstName());
 		userDetails.setLastName(user.getLastName());
 
 		return userDetails;
-		/*
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-			new ArrayList<>());*/
 	}
 
 }
